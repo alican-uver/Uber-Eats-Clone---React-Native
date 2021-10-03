@@ -4,10 +4,15 @@ import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplet
 import { Ionicons } from 'react-native-vector-icons';
 import Antdesign from 'react-native-vector-icons/AntDesign';
 
-const SearchBar = () => {
+const SearchBar = ({ setCity }) => {
   return (
     <View style={{ marginTop: 15, flexDirection: "row" }}>
       <GooglePlacesAutocomplete
+        query={{ key: "AIzaSyDOfTADCDjRkScmzikRuSIMcbvPuihDne0" }}
+        onPress={(data, details = null) => {
+          const city = data.description.split(',')[0];
+          setCity(city);
+        }}
         placeholder="Search"
         styles={{
           textInput: {
@@ -31,7 +36,7 @@ const SearchBar = () => {
         )}
         renderRightButton={() => (
           <View style={{
-            marginRight: 10, 
+            marginRight: 10,
             flexDirection: "row",
             alignItems: "center",
             backgroundColor: "white",
@@ -39,7 +44,7 @@ const SearchBar = () => {
             padding: 8
           }}>
             <Antdesign name="clockcircle" size={11} />
-            <Text style={{ marginLeft: 5}}>
+            <Text style={{ marginLeft: 5 }}>
               Search
             </Text>
           </View>
